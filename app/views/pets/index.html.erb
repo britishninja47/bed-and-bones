@@ -1,0 +1,45 @@
+<div class="container text-center">
+    <h1 class="display-1">Pets</h1>
+    <% if @pets.count == 0 %>
+      <p>No pets found </p>
+    <% else %>
+    <p><%= @pets.count %> pets available</p>
+    <% end %>
+</div>
+
+
+<div class="index-div">
+<div class="container-index-cards">
+  <div class="container-grid">
+    <% @pets.each do |pet| %>
+      <div class="card-product">
+        <div>
+        <%= link_to pet, class: "link" do %>
+                <% if pet.photo.attached? %>
+                  <%= image_tag url_for(pet.photo), class: "card-img-top", width: 600 %>
+                <% else %>
+                  <%= image_tag 'macaw.jpg', draggable: "true", class: "card-img-top" %>
+                <% end %>
+          </div>
+          <div class="card-product-infos">
+            <h2><%=pet.name.capitalize%></h2>
+            <p><%= pet.species.name.capitalize %></p>
+            <% if (pet.age < 2)  %>
+                <p class="card-text"><%= pet.age %> year old</p>
+            <% else %>
+              <p class="card-text"><%= pet.age %> years old</p>
+            <% end %>
+            <p>£<%= pet.price %> / day</p>
+        </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  </div>
+    <div class = "map" style="width: 50%; height: 100vh;"
+      data-controller="mapbox"
+      data-mapbox-markers-value="<%= @markers.to_json %>"
+      data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <%# <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css"> %>
+    <title>Bed & Bones - Find your perfect paws</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
+  </head>
+
+  <body>
+  <%= render "layouts/navbar" %>
+  <% unless ENV['MAPBOX_API_KEY'].present? %>
+    <div style="background:#fff3cd;border:1px solid #ffeeba;padding:10px;text-align:center;font-weight:600;">
+      Mapbox API key missing — address autocomplete/geocoding may be limited. Set `MAPBOX_API_KEY` in your environment to enable full map features.
+    </div>
+  <% end %>
+    <%= yield %>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+  </body>
+  <footer>
+    <%= render "layouts/footer" %>
+  </footer>
+
+</html>

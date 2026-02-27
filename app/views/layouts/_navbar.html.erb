@@ -1,0 +1,57 @@
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <div class="container-fluid">
+    <a class="navbar-brand d-flex align-items-center" href="/">
+      <i class="fas fa-home" aria-hidden="true" style="font-size:1.25rem;"></i>
+      <span class="ms-2">Home</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="search-form-control form-group">
+      <%= form_tag pets_path, method: :get do %>
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control string required",
+          placeholder: "Find a pet"
+          %>
+          <button name="button" type="submit" class="btn btn-flat">
+          <i class="fas fa-search"></i> Search
+          </button>
+      <% end %>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto">
+        <%# if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to "Browse pets", pets_path, class:"nav-link"%>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="speciesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Species
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="speciesDropdown">
+              <%= link_to "All", pets_path, class: "dropdown-item" %>
+              <% Species.order(:name).each do |s| %>
+                <%= link_to s.name, pets_path(species_id: s.id), class: "dropdown-item" %>
+              <% end %>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <%= image_tag "https://walkersarewelcome.org.uk/wp-content/uploads/computer-icons-google-account-icon-design-login-png-favpng-jFjxPac6saRuDE3LiyqsYTEZM.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <%= link_to "My bookings", my_bookings_path, class:"dropdown-item"%>
+              <%= link_to "My pets", my_pets_path, class: "dropdown-item" %>
+              <%#= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+            </div>
+          </li>
+        <%# else %>
+          <!--li class="nav-item"-->
+            <%#= link_to "Login", new_user_session_path, class: "nav-link" %>
+          <!--/li-->
+        <%# end %>
+      </ul>
+    </div>
+  </div>
+</div>

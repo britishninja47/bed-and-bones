@@ -1,0 +1,37 @@
+// Import page-specific CSS files here.
+@import "home";
+@import "pets";
+@import "bookings";
+@import "edit";
+@import "my_pets";
+
+
+
+
+body {
+  background-image: linear-gradient(to right, #26465323, #2a9d9059, #e76f5169)
+}
+
+
+// .container-grid {
+//   display: grid;
+//   grid-template-columns: 1fr;
+//   flex-grow: 1;
+//   justify-content: center;
+//   border: 2px solid red;
+// }
+
+// .card-grid {
+//   background-size: cover;
+//   background-position: center;
+//   height: 250px;
+//   border-radius: 1px;
+//   box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
+//   // display: flex;
+//   align-items: center;
+//   // justify-content: space-around;
+//   font-size: 8px;
+//   color: white;
+//   font-weight: bolder;
+//   margin: 150px 1px;
+// }

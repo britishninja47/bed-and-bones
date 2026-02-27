@@ -1,0 +1,15 @@
+<div class="center center-text">
+  <h1>New Booking</h1>
+  <br>
+  <div class="m-auto">
+    <%= simple_form_for [ @pet, @booking ] do |f| %>
+      <div>
+        <%= f.input :start_date, as: :date, html5: true %>
+        <%= f.input :end_date, as: :date, html5: true %>
+        <p>£<%= @pet.price %>/pd</p>
+        <%= f.submit 'Book Pet', class: "custom-btn blue" %>
+        <%= link_to 'Cancel', pet_path(@pet), class: "custom-btn orange" %>
+      </div>
+    <% end %>
+  </div><br><br><br><br><br><br><br><br><br><br><br>
+</div>
