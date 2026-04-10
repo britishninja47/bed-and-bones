@@ -21,25 +21,21 @@
 
 .card-product {
   overflow: hidden;
-  height: 25vh;
+  height: 400px;
   width: 100%;
   background: white;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   display: flex;
-  align-items: center;
+  flex-direction: column;
   margin-bottom: 20px;
   border-left: 5px solid #E9C46A;
   margin-left: 5px;
 }
 
 .card-product img {
-  height: 100%;
-  width: 250px;
+  height: 250px;
+  width: 100%;
   object-fit: cover;
-  // position: relative;
-  // left: 10px;
-  // top: 50px;
-  // border-radius: 2px;
 }
 
 .card-product h2 {
@@ -65,10 +61,7 @@
 // }
 
 .card-product-infos {
-  margin-left: 20px;
-  // position: relative;
-  // left: 350px;
-  // bottom: 75px;
+  padding: 16px;
 }
 
 .link {
@@ -82,18 +75,15 @@
 
 .index-div {
   display: flex;
+  height: 100vh;
 }
-.title {
-  position: sticky;
-  top: 0;
-  justify-content: center;
-  text-align: center;
-  align-items: center;
+.container-index-cards {
+  width: 50%;
+  overflow-y: auto;
 }
 .map {
+  width: 50%;
   height: 100%;
-  position: sticky;
-  top: 0;
 }
 
 

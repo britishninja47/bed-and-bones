@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   # Static pages
   get 'animals', to: 'pages#animals'
   get 'contact', to: 'pages#contact'
+  post 'contact', to: 'pages#contact'
   get 'about', to: 'pages#about'
 end

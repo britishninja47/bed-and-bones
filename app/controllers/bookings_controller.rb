@@ -1,7 +1,7 @@
 class BookingsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_booking, only: [:show, :edit, :update, :destroy]
-  before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :correct_user, only: [:show, :edit, :update, :destroy]
 
   def new
     @pet = Pet.find(params[:pet_id])
@@ -30,7 +30,7 @@ class BookingsController < ApplicationController
 
   def update
     if @booking.update(booking_params)
-      redirect_to booking_path(@booking)
+      redirect_to pet_booking_path(@booking.pet, @booking)
     else
       render :edit
     end

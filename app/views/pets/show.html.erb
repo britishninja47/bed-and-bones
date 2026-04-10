@@ -1,9 +1,18 @@
 <br><br>
   <div class="card col-7 col-md-5 col-lg-3 center-card m-auto">
     <% if @pet.photo.attached? %>
-      <%= cl_image_tag @pet.photo.key, class: "card-img-top", height: 300, width: 400, crop: :fill%>
+      <%= image_tag url_for(@pet.photo), class: "card-img-top", height: 300, width: 400 %>
     <% else %>
-      <%= image_tag('macaw.jpg', draggable: "true", class: "card-img-top") %>
+      <% species = @pet.species.name.downcase
+        image_url = case species
+        when 'dog'
+          "https://placedog.net/400/300?id=#{@pet.id}"
+        when 'cat'
+          "https://cataas.com/cat?type=original&size=small"
+        else
+          "https://picsum.photos/400/300?random=#{@pet.id}"
+        end %>
+      <%= image_tag image_url, class: "card-img-top" %>
     <% end %>
     <div class="card-body">
       <h2 class="card-title"><%=@pet.name.capitalize%></h2>
@@ -25,5 +34,3 @@
 
 <%# Review Area %>
 <br>
-</div>
-</div>

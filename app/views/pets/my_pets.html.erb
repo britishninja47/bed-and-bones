@@ -16,9 +16,18 @@
       <div class="card cards-grid">
           <%= link_to edit_pet_path(pet), class: "link" do %>
             <% if pet.photo.attached? %>
-              <%= cl_image_tag pet.photo.key, class: "card-img-pets", crop: :limit%>
-            <%else   %>
-              <%= image_tag('macaw.jpg', draggable: "true", class: "card-img-top") %>
+              <%= image_tag url_for(pet.photo), class: "card-img-pets" %>
+            <% else %>
+              <% species = pet.species.name.downcase
+                image_url = case species
+                when 'dog'
+                  "https://placedog.net/400/300?id=#{pet.id}"
+                when 'cat'
+                  "https://cataas.com/cat?type=original&size=small"
+                else
+                  "https://picsum.photos/400/300?random=#{pet.id}"
+                end %>
+              <%= image_tag image_url, class: "card-img-top" %>
             <% end %>
             <div class="card-body">
               <h5 class="card-title"><%=pet.name.capitalize%></h5>

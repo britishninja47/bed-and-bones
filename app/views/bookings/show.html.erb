@@ -5,9 +5,18 @@
   <div class="card col-6 center-card m-auto">
      <%= link_to @booking.pet, class: "link" do %>
          <% if @booking.pet.photo.attached? %>
-          <%= cl_image_tag @booking.pet.photo.key, class: "card-img-top", height: 300, width: 400, crop: :fill%>
-        <%else   %>
-          <%= image_tag('macaw.jpg', draggable: "true", class: "card-img-top") %>
+          <%= image_tag url_for(@booking.pet.photo), class: "card-img-top", height: 300, width: 400 %>
+        <% else %>
+          <% species = @booking.pet.species.name.downcase
+            image_url = case species
+            when 'dog'
+              "https://placedog.net/400/300?id=#{@booking.pet.id}"
+            when 'cat'
+              "https://cataas.com/cat?type=original&size=small"
+            else
+              "https://picsum.photos/400/300?random=#{@booking.pet.id}"
+            end %>
+          <%= image_tag image_url, class: "card-img-top" %>
         <% end %>
     <div class="card-body">
       <h5 class="card-title"><%= @booking.pet.name %></h5>

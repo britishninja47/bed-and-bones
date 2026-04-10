@@ -5,6 +5,6 @@
     <%= f.input :end_date, as: :date, html5: true %>
     <p>Total: £<%= (@booking.end_date - @booking.start_date).to_i * @booking.pet.price %> </p>
     <%= f.submit 'Update Booking', class: "btn btn-primary" %>
-    <%= link_to 'Back', booking_path(@booking), class: "btn btn-secondary" %>
+    <%= link_to 'Back', pet_booking_path(@booking.pet, @booking), class: "btn btn-secondary" %>
   <% end %>
 </div>

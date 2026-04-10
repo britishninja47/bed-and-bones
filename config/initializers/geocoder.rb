@@ -1,7 +1,7 @@
 
-# Always use Nominatim for seeding - no API key required
+# Use test lookup for development to avoid API issues
 Geocoder.configure(
-  lookup: :nominatim,
+  lookup: :test,
   use_https: true,
   timeout: 5,
   units: :km,

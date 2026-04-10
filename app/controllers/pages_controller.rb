@@ -9,6 +9,10 @@ class PagesController < ApplicationController
   end
 
   def contact
+    if request.post?
+      flash[:notice] = "Thanks for your message. We'll be in touch soon."
+      redirect_to contact_path
+    end
   end
 
   def about

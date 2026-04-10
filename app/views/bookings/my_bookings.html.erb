@@ -10,9 +10,18 @@
     <% @bookings.each do |booking| %>
       <div class="card-booking col-10 m-auto">
         <% if booking.pet.photo.attached? %>
-            <%= cl_image_tag booking.pet.photo.key, class: "card-img-top", height: 300, width: 400, crop: :fill%>
-        <%else   %>
-          <%= image_tag('macaw.jpg', draggable: "true", class: "card-img-top") %>
+            <%= image_tag url_for(booking.pet.photo), class: "card-img-top", height: 300, width: 400 %>
+        <% else %>
+          <% species = booking.pet.species.name.downcase
+            image_url = case species
+            when 'dog'
+              "https://placedog.net/400/300?id=#{booking.pet.id}"
+            when 'cat'
+              "https://cataas.com/cat?type=original&size=small"
+            else
+              "https://picsum.photos/400/300?random=#{booking.pet.id}"
+            end %>
+          <%= image_tag image_url, class: "card-img-top" %>
         <% end %>
         <div class="card-info d-flex">
           <div class="card-booking-infos">
