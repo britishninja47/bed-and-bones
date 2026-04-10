@@ -1,0 +1,8 @@
+[build]
+  command = "bundle install && bundle exec rake assets:precompile && bundle exec rake db:migrate"
+
+[[plugins]]
+  package = "netlify-plugin-ruby"
+
+[[plugins]]
+  package = "@netlify/plugin-apt"
