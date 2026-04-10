@@ -5,8 +5,6 @@ ruby '3.0.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.6'
-# Use postgresql as the database for Active Record
-gem 'pg', '~> 1.1'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
@@ -35,9 +33,10 @@ gem 'autoprefixer-rails', '10.2.5'
 gem 'font-awesome-sass'
 gem 'simple_form'
 
-gem 'dotenv-rails', groups: [:development, :test]
 gem 'cloudinary', '~> 1.16.0'
+
 group :development, :test do
+  gem 'sqlite3', '~> 1.4'
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'dotenv-rails'
@@ -63,6 +62,11 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+end
+
+group :production do
+  # Use postgresql as the database for Active Record in production
+  gem 'pg', '>= 1.1'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

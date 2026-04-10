@@ -3,6 +3,3 @@
 
 [[plugins]]
   package = "netlify-plugin-ruby"
-
-[[plugins]]
-  package = "@netlify/plugin-apt"
