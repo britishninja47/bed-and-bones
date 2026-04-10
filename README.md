@@ -1,14 +1,24 @@
-# Bed & Bones
-A marketplace for renting pets... from Pooches to Parrots 🦜
 
-![Our Landing ](./public/bedandboneslandingpage.png)
+# Bed & Bones - Pet Booking Platform
 
-## Contributors
+## Features
+- User auth (Devise)
+- Pet listings with photos, maps
+- Bookings, reviews
+- Mapbox + geolocation
 
-Tara Culpin - [Github](https://github.com/taramacu)
+## Setup
+```
+bundle install
+rails db:create db:migrate db:seed
+# Add ENV: MAPBOX_API_KEY, CLOUDINARY_URL
+rails s
+```
 
-Ahmed Warsama - [Github](https://www.linkedin.com/in/awar7118/)
+## Pages
+- / : Home
+- /pets : Map + search
+- /my_pets : Owner dashboard
+- /my_bookings : User bookings
 
-Solomon Karim - [Github](https://github.com/Solkarim91)
-
-Jeremiah Harriot - [Github](https://github.com/britishninja47)
+**Fully functional!**

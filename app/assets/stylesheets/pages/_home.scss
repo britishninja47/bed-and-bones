@@ -16,10 +16,15 @@ body {
 }
 
 .banner {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)),
+    url('https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
   padding: 150px 0;
   height: 100vh;
+  position: relative;
 }
 
 .banner h1 {
@@ -39,6 +44,31 @@ body {
 }
 .banner .container {
   margin-top: 50px;
+}
+
+.glass-container {
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 32px;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+  padding: 4rem 3rem;
+  max-width: 1000px;
+  margin: 0 auto 0 auto;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+@supports not (backdrop-filter: blur(15px)) {
+  .glass-container {
+    background: rgba(255, 255, 255, 0.15);
+  }
+}
+
+.banner h1, .banner p {
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
 .container .btn {

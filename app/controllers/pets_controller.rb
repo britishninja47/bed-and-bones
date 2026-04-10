@@ -1,4 +1,5 @@
 class PetsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :find_pet, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -16,14 +17,16 @@ class PetsController < ApplicationController
 
     @pets = @pets.order(created_at: :desc)
 
+
     @markers = @pets.geocoded.map do |pet|
       {
         lat: pet.latitude,
         lng: pet.longitude,
         info_window: render_to_string(partial: "info_window", locals: { pet: pet }),
-        image_url: helpers.asset_url("pawprint.png")
+        image_url: pet.photo.attached? ? pet.photo.service_url : helpers.asset_url("pawprint.png")
       }
     end
+
   end
 
   def new

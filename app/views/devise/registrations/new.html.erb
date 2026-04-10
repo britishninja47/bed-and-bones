@@ -1,32 +1,70 @@
-<h2>Sign up</h2>
+<div class="login-container">
+  <div class="login-card">
+    <h2><i class="fas fa-user-plus me-2" style="color: #4ecdc4;"></i>Join Bed & Bones</h2>
+    <p class="text-center text-white-50 mb-4">Create your account to start booking pawsome pets!</p>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { novalidate: true, data: { controller: 'form' } }) do |f| %>
+      <%= f.error_notification class: 'alert alert-danger mt-2 rounded-pill py-2' %>
 
-  <div class="form-inputs">
-    <%= f.input :first_name,
-                required: true,
-                autofocus: true %>
-    <%= f.input :last_name,
-                required: true,
-                autofocus: true %>
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
-    <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
+      <div class="form-inputs">
+        <div class="form-input-group row">
+          <div class="col-md-6">
+            <i class="fas fa-user input-icon"></i>
+            <%= f.input :first_name,
+                        label: false,
+                        required: true,
+                        autofocus: true,
+                        input_html: { autocomplete: "given-name", class: 'form-control ps-5', placeholder: 'First name' } %>
+          </div>
+          <div class="col-md-6">
+            <i class="fas fa-user input-icon"></i>
+            <%= f.input :last_name,
+                        label: false,
+                        required: true,
+                        input_html: { autocomplete: "family-name", class: 'form-control ps-5', placeholder: 'Last name' } %>
+          </div>
+        </div>
 
+        <div class="form-input-group">
+          <i class="fas fa-envelope input-icon"></i>
+          <%= f.input :email,
+                      label: false,
+                      required: true,
+                      input_html: { autocomplete: "email", class: 'form-control ps-5', placeholder: 'Email address' } %>
+        </div>
+
+        <div class="form-input-group">
+          <i class="fas fa-lock input-icon"></i>
+          <%= f.input :password,
+                      label: false,
+                      required: true,
+                      input_html: { autocomplete: "new-password", class: 'form-control ps-5 pe-5', id: 'user_password', placeholder: 'Password' , 'data-action': 'click->form#togglePassword' } %>
+                      <% if @minimum_password_length %>
+                        <small class="form-text text-muted"><%= "#{@minimum_password_length} characters minimum" %></small>
+                      <% end %>
+          <button type="button" class="password-toggle" onclick="togglePassword()" data-action="click->form#togglePassword">
+            <i class="fas fa-eye" id="toggleIcon"></i>
+          </button>
+        </div>
+
+        <div class="form-input-group">
+          <i class="fas fa-lock-open input-icon"></i>
+          <%= f.input :password_confirmation,
+                      label: false,
+                      required: true,
+                      input_html: { autocomplete: "new-password", class: 'form-control ps-5', placeholder: 'Confirm password' } %>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, "Sign Up 🐶", class: "btn btn-login mb-4 w-100", style: "background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);" %>
+      </div>
+    <% end %>
+
+    <div class="links text-center">
+      <%= render "devise/shared/links" %>
+      <hr class="my-3 opacity-25">
+      <small class="text-white-50">Have an account? <%= link_to "Log in", new_user_session_path %></small>
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

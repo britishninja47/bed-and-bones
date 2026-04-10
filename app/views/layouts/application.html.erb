@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <%# <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css"> %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <title>Bed & Bones - Find your perfect paws</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
@@ -15,11 +15,7 @@
 
   <body>
   <%= render "layouts/navbar" %>
-  <% unless ENV['MAPBOX_API_KEY'].present? %>
-    <div style="background:#fff3cd;border:1px solid #ffeeba;padding:10px;text-align:center;font-weight:600;">
-      Mapbox API key missing — address autocomplete/geocoding may be limited. Set `MAPBOX_API_KEY` in your environment to enable full map features.
-    </div>
-  <% end %>
+<%# Mapbox warning hidden - key set %>
     <%= yield %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>

@@ -1,5 +1,7 @@
 class BookingsController < ApplicationController
-  before_action :find_booking, only: [:show, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :find_booking, only: [:show, :edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   def new
     @pet = Pet.find(params[:pet_id])
@@ -23,12 +25,15 @@ class BookingsController < ApplicationController
     @review = Review.new
   end
 
-  # def edit
-  # end
+  def edit
+  end
 
   def update
-    @booking.update(booking_params)
-    redirect_to booking_path(@booking)
+    if @booking.update(booking_params)
+      redirect_to booking_path(@booking)
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -46,10 +51,13 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
   end
 
-  # def find_pet
-  # end
+
+
+  def correct_user
+    redirect_to root_path, alert: 'Not authorized' unless @booking.user == current_user
+  end
 
   def booking_params
-    params.require(:booking).permit(:start_date, :end_date, :user_id, :pet_id)
+    params.require(:booking).permit(:start_date, :end_date)
   end
 end

@@ -1,2 +1,11 @@
-<h2><%= pet.name %></h2>
-<p><%= pet.address %></p>
+
+<div style="text-align: left; max-width: 250px;">
+  <% if pet.photo.attached? %>
+    <%= image_tag pet.photo.variant(resize_to_limit: [80, 80]), style: "width: 80px; height: 80px; object-fit: cover; border-radius: 8px; margin-bottom: 8px;" %>
+  <% end %>
+  <h5 style="margin: 0 0 5px 0; color: #333;"><%= pet.name %></strong></h5>
+  <p style="margin: 0 0 5px 0; color: #666; font-size: 0.9em;"><%= pet.species.name %></p>
+  <p style="margin: 0 0 5px 0; color: #666; font-size: 0.9em;"><%= pet.address %></p>
+  <p style="margin: 0 0 10px 0; font-weight: bold; color: #4ecdc4;">£<%= pet.price %>/day</p>
+  <%= link_to "View", pet_path(pet), class: "btn btn-sm btn-primary" %>
+</div>
